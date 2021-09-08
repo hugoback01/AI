@@ -1,0 +1,17 @@
+max_depth = 3
+
+def minmax(matrice, depth,turn ):
+    if(depth == max_depth):
+        value =  evaluation(board, turn)
+    else:
+        if turn == 0: # your turn
+            value = 0 # your turn, then you want to do the best (highest value)
+            for element in next_state(board, turn):
+                value = max(value, minmax(element, depth + 1, 1))
+        else: #oppent turn
+            value = 1 # oppenent turn, then he will play ptimale and minimaze your chance of winning
+            for element in next_state(board, turn):
+                value = min(value, minmax(element, depth + 1, 0))
+            
+    return value
+    
